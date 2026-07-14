@@ -4,6 +4,28 @@ from app.services import auth_service
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api")
 
+@auth_bp.route("/debug/jwt", methods=["GET"])
+def debug_jwt():
+    import jwt
+    from app.config import Config
+    test_secret = Config.JWT_SECRET
+    token = jwt.encode({"test": "data"}, test_secret, algorithm="HS256")
+    try:
+        decoded = jwt.decode(token, test_secret, algorithms=["HS256"])
+        success = True
+        err = None
+    except Exception as e:
+        success = False
+        err = str(e)
+    return jsonify({
+        "secret_length": len(test_secret) if test_secret else 0,
+        "secret_starts_with": test_secret[:3] if test_secret else None,
+        "token": token,
+        "success": success,
+        "error": err
+    })
+
+
 signup_schema = SignupSchema()
 admin_login_schema = AdminLoginSchema()
 
