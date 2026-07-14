@@ -10,8 +10,8 @@ def find_by_id(fresher_id):
     return Fresher.query.get(fresher_id)
 
 
-def create(roll_no, name, socials=None):
-    fresher = Fresher(roll_no=roll_no, name=name, socials=socials)
+def create(roll_no, name):
+    fresher = Fresher(roll_no=roll_no, name=name)
     db.session.add(fresher)
     db.session.flush()
     return fresher

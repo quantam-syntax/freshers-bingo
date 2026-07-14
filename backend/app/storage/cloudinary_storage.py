@@ -34,14 +34,4 @@ def upload_file(file_data, content_type, folder="bingo-photos"):
     return result["secure_url"]
 
 
-def upload_file_fallback(file_data, content_type, folder="bingo-photos"):
-    file_ext = content_type.split("/")[-1] if "/" in content_type else "jpg"
-    filename = f"{uuid.uuid4().hex}.{file_ext}"
-    upload_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "uploads", folder
-    )
-    os.makedirs(upload_dir, exist_ok=True)
-    filepath = os.path.join(upload_dir, filename)
-    with open(filepath, "wb") as f:
-        f.write(file_data)
-    return f"/uploads/{folder}/{filename}"
+

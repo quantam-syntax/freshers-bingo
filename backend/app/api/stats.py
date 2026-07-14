@@ -10,7 +10,7 @@ stats_bp = Blueprint("stats", __name__, url_prefix="/api/stats")
 def get_stats():
     return jsonify({
         "freshers_registered": fresher_repo.count_all(),
-        "challenges_total": len(challenge_repo.get_all()),
+        "challenges_total": challenge_repo.count_all(),
         "challenges_used": challenge_repo.get_used_count(),
         "bingo_completions": bingo_repo.count_completed(),
         "winners_count": winner_repo.count(),

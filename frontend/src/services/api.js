@@ -19,10 +19,10 @@ async function request(endpoint, options = {}) {
 }
 
 export const api = {
-  signup(rollNo, name, socials) {
+  signup(rollNo, name) {
     return request('/api/auth/signup', {
       method: 'POST',
-      body: JSON.stringify({ roll_no: rollNo, name, socials }),
+      body: JSON.stringify({ roll_no: rollNo, name }),
     })
   },
 

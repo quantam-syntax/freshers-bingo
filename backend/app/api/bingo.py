@@ -31,9 +31,8 @@ def upload_cell_photo(cell_id):
     try:
         from app.storage.cloudinary_storage import upload_file
         photo_url = upload_file(file_data, content_type)
-    except Exception:
-        from app.storage.cloudinary_storage import upload_file_fallback
-        photo_url = upload_file_fallback(file_data, content_type)
+    except Exception as e:
+        return jsonify({"error": "Failed to upload photo to storage: " + str(e)}), 500
 
     card_data, winner_data = bingo_service.upload_cell_photo(cell_id, photo_url, g.current_fresher.id)
     if card_data is None:

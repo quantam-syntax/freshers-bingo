@@ -9,7 +9,7 @@ class Challenge(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
-    is_used = db.Column(db.Boolean, default=False)
+    is_used = db.Column(db.Boolean, default=False, index=True)
     used_at = db.Column(db.DateTime, nullable=True)
     created_by_admin_id = db.Column(db.Integer, db.ForeignKey("admins.id"), nullable=True)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(IST))

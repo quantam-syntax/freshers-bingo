@@ -264,8 +264,6 @@ export default function AdminDashboard() {
                   <tr>
                     <th>Roll No</th>
                     <th>Name</th>
-                    <th>Instagram</th>
-                    <th>LinkedIn</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -273,30 +271,6 @@ export default function AdminDashboard() {
                     <tr key={f.id}>
                       <td><strong>{f.roll_no}</strong></td>
                       <td>{f.name}</td>
-                      <td>
-                        {f.socials?.instagram ? (
-                          <a
-                            href={`https://instagram.com/${f.socials.instagram.replace('@', '')}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="social-link"
-                          >
-                            {f.socials.instagram}
-                          </a>
-                        ) : '-'}
-                      </td>
-                      <td>
-                        {f.socials?.linkedin ? (
-                          <a
-                            href={f.socials.linkedin.startsWith('http') ? f.socials.linkedin : `https://${f.socials.linkedin}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="social-link"
-                          >
-                            Link
-                          </a>
-                        ) : '-'}
-                      </td>
                     </tr>
                   ))}
                 </tbody>

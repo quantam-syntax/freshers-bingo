@@ -14,4 +14,4 @@ class Config:
     }
     JWT_SECRET = os.getenv("JWT_SECRET", "dev-secret-change-me")
     CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+    MAX_CONTENT_LENGTH = 5 * 1024 * 1024

@@ -9,6 +9,10 @@ def get_all():
     return Challenge.query.order_by(Challenge.id).all()
 
 
+def count_all():
+    return Challenge.query.count()
+
+
 def get_unused():
     return Challenge.query.filter_by(is_used=False).all()
 

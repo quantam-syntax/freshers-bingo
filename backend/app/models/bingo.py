@@ -32,7 +32,7 @@ class BingoCell(db.Model):
     __tablename__ = "bingo_cells"
 
     id = db.Column(db.Integer, primary_key=True)
-    bingo_card_id = db.Column(db.Integer, db.ForeignKey("bingo_cards.id"), nullable=False)
+    bingo_card_id = db.Column(db.Integer, db.ForeignKey("bingo_cards.id"), nullable=False, index=True)
     position = db.Column(db.Integer, nullable=False)
     letter = db.Column(db.String(5), nullable=False)
     photo_url = db.Column(db.Text, nullable=True)

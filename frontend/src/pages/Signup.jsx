@@ -7,8 +7,6 @@ import './Signup.css'
 export default function Signup() {
   const [rollNo, setRollNo] = useState('')
   const [name, setName] = useState('')
-  const [instagram, setInstagram] = useState('')
-  const [linkedin, setLinkedin] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const { loginFresher } = useAuth()
@@ -23,13 +21,9 @@ export default function Signup() {
     setLoading(true)
     setError('')
     try {
-      const socials = {}
-      if (instagram.trim()) socials.instagram = instagram.trim()
-      if (linkedin.trim()) socials.linkedin = linkedin.trim()
       const result = await api.signup(
         rollNo.trim(),
-        name.trim(),
-        Object.keys(socials).length > 0 ? socials : null
+        name.trim()
       )
       loginFresher(result.fresher, result.token)
       navigate('/dashboard')
@@ -68,28 +62,6 @@ export default function Signup() {
               placeholder="e.g. Aarav Sharma"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Instagram <span className="optional">(optional)</span></label>
-            <input
-              id="signup-instagram"
-              className="input-field"
-              type="text"
-              placeholder="@yourhandle"
-              value={instagram}
-              onChange={(e) => setInstagram(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">LinkedIn <span className="optional">(optional)</span></label>
-            <input
-              id="signup-linkedin"
-              className="input-field"
-              type="text"
-              placeholder="linkedin.com/in/you"
-              value={linkedin}
-              onChange={(e) => setLinkedin(e.target.value)}
             />
           </div>
           {error && <div className="form-error">{error}</div>}

@@ -18,7 +18,6 @@ def signup():
     result = auth_service.signup_fresher(
         roll_no=data["roll_no"],
         name=data["name"],
-        socials=data.get("socials"),
     )
     status = 200 if result["existing"] else 201
     return jsonify(result), status

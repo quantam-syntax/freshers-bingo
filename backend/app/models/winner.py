@@ -8,7 +8,7 @@ class Winner(db.Model):
     __tablename__ = "winners"
 
     id = db.Column(db.Integer, primary_key=True)
-    fresher_id = db.Column(db.Integer, db.ForeignKey("freshers.id"), nullable=False)
+    fresher_id = db.Column(db.Integer, db.ForeignKey("freshers.id"), nullable=False, index=True)
     bingo_card_id = db.Column(db.Integer, db.ForeignKey("bingo_cards.id"), nullable=False)
     rank = db.Column(db.Integer, nullable=False)
     completed_at = db.Column(db.DateTime, default=lambda: datetime.now(IST))

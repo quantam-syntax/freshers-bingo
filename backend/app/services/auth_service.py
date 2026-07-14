@@ -9,9 +9,11 @@ from app.services.bingo_service import generate_card_for_fresher
 IST = timezone(timedelta(hours=5, minutes=30))
 
 
+import sqlalchemy
+
 def create_fresher_token(fresher):
     payload = {
-        "sub": str(fresher.id),
+        "sub": fresher.id,
         "role": "fresher",
         "roll_no": fresher.roll_no,
         "exp": datetime.now(IST) + timedelta(days=30),
@@ -21,7 +23,7 @@ def create_fresher_token(fresher):
 
 def create_admin_token(admin):
     payload = {
-        "sub": str(admin.id),
+        "sub": admin.id,
         "role": "admin",
         "username": admin.username,
         "exp": datetime.now(IST) + timedelta(days=7),
@@ -29,15 +31,23 @@ def create_admin_token(admin):
     return jwt.encode(payload, Config.JWT_SECRET, algorithm="HS256")
 
 
-def signup_fresher(roll_no, name, socials=None):
+def signup_fresher(roll_no, name):
     existing = fresher_repo.find_by_roll_no(roll_no)
     if existing:
         token = create_fresher_token(existing)
         return {"fresher": existing.to_dict(), "token": token, "existing": True}
 
-    fresher = fresher_repo.create(roll_no, name, socials)
-    generate_card_for_fresher(fresher.id)
-    db.session.commit()
+    try:
+        fresher = fresher_repo.create(roll_no, name)
+        generate_card_for_fresher(fresher.id)
+        db.session.commit()
+    except sqlalchemy.exc.IntegrityError:
+        db.session.rollback()
+        existing = fresher_repo.find_by_roll_no(roll_no)
+        if existing:
+            token = create_fresher_token(existing)
+            return {"fresher": existing.to_dict(), "token": token, "existing": True}
+        raise
 
     token = create_fresher_token(fresher)
     return {"fresher": fresher.to_dict(), "token": token, "existing": False}
