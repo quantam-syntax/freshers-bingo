@@ -19,14 +19,14 @@ def fresher_required(f):
             payload = jwt.decode(token, Config.JWT_SECRET, algorithms=["HS256"])
             if payload.get("role") != "fresher":
                 return jsonify({"error": "Fresher access required"}), 403
-            fresher = Fresher.query.get(payload["sub"])
+            fresher = Fresher.query.get(int(payload["sub"]))
             if not fresher:
                 return jsonify({"error": "Fresher not found"}), 404
             g.current_fresher = fresher
-        except jwt.ExpiredSignatureError as e:
-            return jsonify({"error": "Token expired", "message": str(e)}), 401
-        except jwt.InvalidTokenError as e:
-            return jsonify({"error": "Invalid token", "message": str(e)}), 401
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "Token expired"}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Invalid token"}), 401
         return f(*args, **kwargs)
     return decorated
 
@@ -44,13 +44,13 @@ def admin_required(f):
             payload = jwt.decode(token, Config.JWT_SECRET, algorithms=["HS256"])
             if payload.get("role") != "admin":
                 return jsonify({"error": "Admin access required"}), 403
-            admin = Admin.query.get(payload["sub"])
+            admin = Admin.query.get(int(payload["sub"]))
             if not admin:
                 return jsonify({"error": "Admin not found"}), 404
             g.current_admin = admin
-        except jwt.ExpiredSignatureError as e:
-            return jsonify({"error": "Token expired", "message": str(e)}), 401
-        except jwt.InvalidTokenError as e:
-            return jsonify({"error": "Invalid token", "message": str(e)}), 401
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "Token expired"}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Invalid token"}), 401
         return f(*args, **kwargs)
     return decorated

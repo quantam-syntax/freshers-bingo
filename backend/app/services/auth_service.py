@@ -13,7 +13,7 @@ import sqlalchemy
 
 def create_fresher_token(fresher):
     payload = {
-        "sub": fresher.id,
+        "sub": str(fresher.id),
         "role": "fresher",
         "roll_no": fresher.roll_no,
         "exp": datetime.now(IST) + timedelta(days=30),
@@ -23,7 +23,7 @@ def create_fresher_token(fresher):
 
 def create_admin_token(admin):
     payload = {
-        "sub": admin.id,
+        "sub": str(admin.id),
         "role": "admin",
         "username": admin.username,
         "exp": datetime.now(IST) + timedelta(days=7),
