@@ -46,14 +46,14 @@ def seed():
     with app.app_context():
         db.create_all()
 
-        existing_admin = Admin.query.filter_by(username="admin").first()
+        existing_admin = Admin.query.filter_by(username="GSK").first()
         if not existing_admin:
-            password_hash = bcrypt.hashpw("freshers2026".encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
-            admin = Admin(username="admin", password_hash=password_hash)
+            password_hash = bcrypt.hashpw("safarfreshers@2026".encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+            admin = Admin(username="GSK", password_hash=password_hash)
             db.session.add(admin)
             db.session.commit()
             admin_id = admin.id
-            print("Admin created: admin / freshers2026")
+            print("Admin created: GSK / safarfreshers@2026")
         else:
             admin_id = existing_admin.id
             print("Admin already exists")
