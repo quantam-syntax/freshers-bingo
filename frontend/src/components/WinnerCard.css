@@ -1,0 +1,67 @@
+.winner-card {
+  width: 180px;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.winner-card:hover {
+  z-index: 5;
+  transform: rotate(0deg) scale(1.08) !important;
+}
+
+.winner-photo-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: var(--cream);
+}
+
+.winner-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.winner-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: var(--cream);
+}
+
+.winner-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.winner-rank {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--mustard);
+  line-height: 1;
+}
+
+.winner-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--brown-dark);
+  text-align: center;
+}
+
+.winner-roll {
+  font-size: 0.75rem;
+  color: var(--brown-soft);
+}
+
+@media (max-width: 480px) {
+  .winner-card { width: 140px; }
+  .winner-rank { font-size: 1.4rem; }
+}

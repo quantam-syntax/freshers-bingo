@@ -1,0 +1,30 @@
+.admin-login-card {
+  margin-top: 80px;
+  max-width: 400px;
+}
+
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-submit-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.admin-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-back {
+  text-align: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --brown-dark: #3E2723;
+  --brown-mid: #4E342E;
+  --brown-light: #6D4C41;
+  --brown-soft: #8D6E63;
+  --cream: #F5EFE6;
+  --cream-light: #FFF8E7;
+  --cream-warm: #FAF0DB;
+  --mustard: #D9A441;
+  --mustard-light: #E8C068;
+  --red-pin: #C0392B;
+  --red-pin-dark: #962D22;
+  --green-success: #27AE60;
+  --shadow-soft: 2px 3px 8px rgba(0, 0, 0, 0.18);
+  --shadow-card: 2px 4px 12px rgba(0, 0, 0, 0.22);
+  --shadow-hover: 3px 6px 16px rgba(0, 0, 0, 0.28);
+  --font-display: 'Caveat', cursive;
+  --font-body: 'Inter', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 50px;
+  --transition: 0.2s ease;
+}

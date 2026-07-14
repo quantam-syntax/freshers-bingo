@@ -1,0 +1,1 @@
+from app.sockets.challenge_events import register_socket_handlers

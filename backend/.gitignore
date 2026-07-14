@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.env
+firebase-credentials.json
+venv/
+*.egg-info/
+dist/
+build/
+uploads/
+instance/
+
+=1.40.0
