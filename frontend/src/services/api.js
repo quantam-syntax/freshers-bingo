@@ -14,6 +14,13 @@ async function request(endpoint, options = {}) {
     headers: { ...getHeaders(options.isFormData), ...options.headers },
   })
   const data = await response.json()
+  if (response.status === 401) {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    localStorage.removeItem('role')
+    window.location.href = '/'
+    return
+  }
   if (!response.ok) throw { status: response.status, ...data }
   return data
 }
