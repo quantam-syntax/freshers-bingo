@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import Signup from './pages/Signup'
+import Landing from './pages/Landing'
 import AdminLogin from './pages/AdminLogin'
 import FresherDashboard from './pages/FresherDashboard'
 import AdminDashboard from './pages/AdminDashboard'
@@ -33,7 +34,8 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AutoRedirect><Signup /></AutoRedirect>} />
+          <Route path="/" element={<AutoRedirect><Landing /></AutoRedirect>} />
+          <Route path="/signup" element={<AutoRedirect><Signup /></AutoRedirect>} />
           <Route path="/admin" element={<AutoRedirect><AdminLogin /></AutoRedirect>} />
           <Route
             path="/dashboard"

@@ -1,0 +1,262 @@
+.passport-wrapper {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 24px auto;
+}
+
+.passport-ticket {
+  background: var(--cream-light);
+  border: 2px solid var(--brown-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.ticket-header {
+  background: var(--brown-dark);
+  color: var(--cream);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed var(--brown-soft);
+}
+
+.ticket-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticket-badge {
+  background: var(--mustard);
+  color: var(--brown-dark);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.5px;
+}
+
+.ticket-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--cream-light);
+}
+
+.ticket-serial {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--mustard-light);
+}
+
+/* Body */
+.ticket-body {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+@media (max-width: 480px) {
+  .ticket-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Photo Box */
+.ticket-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ticket-polaroid {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 8px 8px 16px 8px;
+  width: 130px;
+  position: relative;
+  transform: rotate(-2deg);
+}
+
+.polaroid-pin {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, var(--red-pin) 40%, var(--red-pin-dark) 80%);
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.ticket-selfie {
+  width: 114px;
+  height: 114px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.ticket-selfie-placeholder {
+  width: 114px;
+  height: 114px;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--brown-soft);
+}
+
+.placeholder-emoji {
+  font-size: 2.2rem;
+  opacity: 0.6;
+}
+
+.placeholder-text {
+  font-size: 0.75rem;
+  color: var(--brown-soft);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.photo-hint {
+  font-size: 0.7rem;
+  color: var(--red-pin);
+  font-weight: 600;
+  max-width: 135px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Details */
+.ticket-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.detail-row {
+  display: flex;
+  gap: 16px;
+}
+
+.detail-row .detail-item {
+  flex: 1;
+}
+
+.detail-label {
+  font-size: 0.65rem;
+  color: var(--brown-soft);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: var(--brown-dark);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding-bottom: 2px;
+}
+
+.code-font {
+  font-family: monospace;
+}
+
+/* Barcode */
+.barcode-container {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.barcode {
+  width: 120px;
+  height: 35px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 1px,
+    transparent 1px,
+    transparent 4px,
+    #000 4px,
+    #000 6px,
+    transparent 6px,
+    transparent 8px
+  );
+  opacity: 0.85;
+}
+
+.barcode-text {
+  font-size: 0.65rem;
+  color: var(--brown-soft);
+  font-family: monospace;
+  margin-top: 2px;
+}
+
+/* Stamp Overlay */
+.passport-stamp {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.passport-stamp.verified {
+  border: 3px double var(--green-success);
+  color: var(--green-success);
+  transform: rotate(-10deg);
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.05);
+}
+
+.passport-stamp.active {
+  border: 3px double var(--mustard);
+  color: var(--mustard);
+  transform: rotate(-8deg);
+  box-shadow: 0 0 0 4px rgba(217, 164, 65, 0.05);
+}
+
+.stamp-text-outer {
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+}
+
+.stamp-text-inner {
+  font-size: 0.65rem;
+  line-height: 1.1;
+  font-family: var(--font-display);
+}

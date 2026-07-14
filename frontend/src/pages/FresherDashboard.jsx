@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useSocket } from '../hooks/useSocket'
 import { useBingoCard } from '../hooks/useBingoCard'
 import BingoCard from '../components/BingoCard'
+import Passport from '../components/Passport'
 import ChallengePopup from '../components/ChallengePopup'
 import { useNavigate } from 'react-router-dom'
 import './FresherDashboard.css'
@@ -10,6 +12,7 @@ export default function FresherDashboard() {
   const { user, logout } = useAuth()
   const { card, loading, uploading, error, uploadPhoto } = useBingoCard()
   const { challengePopup, dismissPopup } = useSocket()
+  const [activeTab, setActiveTab] = useState('bingo')
   const navigate = useNavigate()
 
   function handleLogout() {
@@ -40,13 +43,32 @@ export default function FresherDashboard() {
         </div>
       </div>
 
+      <div className="dashboard-tabs">
+        <button 
+          className={`tab-btn ${activeTab === 'bingo' ? 'active' : ''}`}
+          onClick={() => setActiveTab('bingo')}
+        >
+          🎯 Bingo Grid
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'passport' ? 'active' : ''}`}
+          onClick={() => setActiveTab('passport')}
+        >
+          🎟️ My Passport
+        </button>
+      </div>
+
       {error && <div className="form-error" style={{ marginBottom: 16 }}>{error}</div>}
 
-      {card && (
+      {activeTab === 'bingo' && card && (
         <BingoCard card={card} onUpload={uploadPhoto} uploadingCell={uploading} />
       )}
 
-      {card?.completed_at && (
+      {activeTab === 'passport' && (
+        <Passport user={user} card={card} />
+      )}
+
+      {card?.completed_at && activeTab === 'bingo' && (
         <div className="bingo-complete-banner animate-pop-in">
           <div className="washi-tape">🎉 BINGO COMPLETE! 🎉</div>
         </div>
