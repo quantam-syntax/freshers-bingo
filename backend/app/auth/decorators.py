@@ -23,10 +23,10 @@ def fresher_required(f):
             if not fresher:
                 return jsonify({"error": "Fresher not found"}), 404
             g.current_fresher = fresher
-        except jwt.ExpiredSignatureError:
-            return jsonify({"error": "Token expired"}), 401
-        except jwt.InvalidTokenError:
-            return jsonify({"error": "Invalid token"}), 401
+        except jwt.ExpiredSignatureError as e:
+            return jsonify({"error": "Token expired", "message": str(e)}), 401
+        except jwt.InvalidTokenError as e:
+            return jsonify({"error": "Invalid token", "message": str(e)}), 401
         return f(*args, **kwargs)
     return decorated
 
@@ -48,9 +48,9 @@ def admin_required(f):
             if not admin:
                 return jsonify({"error": "Admin not found"}), 404
             g.current_admin = admin
-        except jwt.ExpiredSignatureError:
-            return jsonify({"error": "Token expired"}), 401
-        except jwt.InvalidTokenError:
-            return jsonify({"error": "Invalid token"}), 401
+        except jwt.ExpiredSignatureError as e:
+            return jsonify({"error": "Token expired", "message": str(e)}), 401
+        except jwt.InvalidTokenError as e:
+            return jsonify({"error": "Invalid token", "message": str(e)}), 401
         return f(*args, **kwargs)
     return decorated
