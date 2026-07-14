@@ -9,7 +9,7 @@ class BingoCard(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     fresher_id = db.Column(db.Integer, db.ForeignKey("freshers.id"), unique=True, nullable=False)
-    win_mode = db.Column(db.String(20), default="full_card")
+    win_mode = db.Column(db.String(20), default="any_line")
     completed_at = db.Column(db.DateTime, nullable=True)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(IST))
 
