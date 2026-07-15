@@ -48,7 +48,6 @@ export default function Signup() {
               id="signup-roll-no"
               className="input-field"
               type="text"
-              placeholder="e.g. CS2026001"
               value={rollNo}
               onChange={(e) => setRollNo(e.target.value)}
             />
@@ -59,7 +58,6 @@ export default function Signup() {
               id="signup-name"
               className="input-field"
               type="text"
-              placeholder="e.g. Aarav Sharma"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
