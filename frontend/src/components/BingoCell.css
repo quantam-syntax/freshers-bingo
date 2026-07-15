@@ -102,3 +102,26 @@
   .cell-hint { font-size: 0.5rem; }
   .cell-pin { width: 10px; height: 10px; top: -4px; }
 }
+
+.cell-task {
+  font-size: 0.65rem;
+  color: var(--brown-dark);
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.25;
+  word-break: keep-all;
+  word-wrap: break-word;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 480px) {
+  .cell-task {
+    font-size: 0.48rem;
+    line-height: 1.15;
+    padding: 1px 2px;
+  }
+}

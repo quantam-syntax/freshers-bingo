@@ -20,12 +20,15 @@ BINGO_LINES = [
 
 
 def generate_card_for_fresher(fresher_id):
+    task_indexes = [str(i) for i in range(1, 25)]
+    random.shuffle(task_indexes)
     letters = []
+    task_iter = iter(task_indexes)
     for i in range(25):
         if i == 12:
             letters.append("★")
         else:
-            letters.append(random.choice(WEIGHTED_LETTERS))
+            letters.append(next(task_iter))
     return bingo_repo.create_card(fresher_id, letters)
 
 

@@ -29,10 +29,14 @@ export default function BingoCell({ cell, onUpload, isUploading }) {
         </div>
       ) : (
         <div className="cell-content">
-          <span className="cell-letter">{isCenter ? '📸' : cell.letter}</span>
-          <span className="cell-hint">
-            {isCenter ? 'Solo selfie!' : 'starts their name'}
-          </span>
+          {isCenter ? (
+            <>
+              <span className="cell-letter">📸</span>
+              <span className="cell-hint">Solo selfie!</span>
+            </>
+          ) : (
+            <span className="cell-task">{cell.task_text || cell.letter}</span>
+          )}
         </div>
       )}
       {isUploading && (

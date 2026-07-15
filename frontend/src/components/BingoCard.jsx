@@ -20,7 +20,7 @@ export default function BingoCard({ card, onUpload, uploadingCell }) {
         <div className="washi-tape">Human Bingo</div>
       </div>
       <p className="bingo-instructions">
-        Each square has a letter. Find someone whose name starts with it,
+        Find someone who matches the criterion in each square,
         take a selfie together, and pin it up. Use a different person for every square!
       </p>
       <ProgressBar filled={card.filled_count} total={card.total_count} />
